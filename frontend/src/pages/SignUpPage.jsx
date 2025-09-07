@@ -4,7 +4,7 @@ import { Link } from "react-router";   // ✅ use react-router-dom, not react-ro
 import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { signup } from "../lib/api";
-import useSignup from "../hooks/useSignup";
+import useSignUp from "../hooks/useSignUp";
 
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
@@ -12,7 +12,7 @@ const SignUpPage = () => {
     email: "",
     password: "",
   });
-const {isPending, error, signupMutation} = useSignup()
+const {isPending, error, signupMutation} = useSignUp()
   const handleSignup = (e) => {
     e.preventDefault();
     signupMutation(signupData);
