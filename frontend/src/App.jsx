@@ -11,6 +11,7 @@ import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import Layout from "./components/Layout.jsx";
 import { useThemeStore } from "./store/useThemeStore.js";
+import FriendsPage from "./pages/FirendsPage.jsx";
 
 const App = () => {
   const { isLoading, authUser } = useAuthUser();
@@ -68,10 +69,10 @@ const App = () => {
           element={
             isAuthenticated && isOnboarded ? (
               <Layout showSidebar={true}>
-                <NotificationPage/>
+                <NotificationPage />
               </Layout>
             ) : (
-              <Navigate to={ !isAuthenticated ? "/login" : "/onboarding"}/>
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
           }
         />
@@ -81,9 +82,9 @@ const App = () => {
           path="/call/:id"
           element={
             isAuthenticated && isOnboarded ? (
-              <CallPage/>
-            ):(
-              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>
+              <CallPage />
+            ) : (
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
           }
         />
@@ -94,13 +95,12 @@ const App = () => {
           element={
             isAuthenticated && isOnboarded ? (
               <Layout showSidebar={false}>
-                <ChatPage/>
+                <ChatPage />
               </Layout>
             ) : (
-              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
           }
-
         />
 
         {/* Onboarding */}
@@ -112,6 +112,20 @@ const App = () => {
                 <OnboardingPage />
               ) : (
                 <Navigate to="/" />
+              )
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/friends"
+          element={
+            isAuthenticated ? (
+              isOnboarded ? (
+                <FriendsPage />
+              ) : (
+                <Navigate to="/onboarding" />
               )
             ) : (
               <Navigate to="/login" />
